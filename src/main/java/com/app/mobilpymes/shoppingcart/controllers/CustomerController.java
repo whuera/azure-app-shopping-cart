@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/customer")
+@CrossOrigin
 public
 class CustomerController {
 
@@ -29,7 +30,6 @@ class CustomerController {
     private
     CustomerService customerService;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("create")
     public
     ResponseEntity < Customer > createCustomer (@Valid @RequestBody Customer customer, BindingResult result) {
@@ -40,7 +40,6 @@ class CustomerController {
         return ResponseEntity.status ( HttpStatus.CREATED ).body ( customerCreate );
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/customers")
     public
     ResponseEntity < List < Customer > > getAllCustomers ( ) {

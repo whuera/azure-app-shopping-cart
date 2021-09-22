@@ -26,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin
 public
 class ProductController {
 
@@ -42,7 +43,6 @@ class ProductController {
         return "Status Ok";
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/products")
     public
     ResponseEntity < List < Product > > getAllProducts ( ) {
@@ -78,7 +78,6 @@ class ProductController {
         return ResponseEntity.ok ( product );
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public
     ResponseEntity < Product > createProduct (@Valid @RequestBody Product product, BindingResult result) {
@@ -112,6 +111,5 @@ class ProductController {
     ResponseEntity < List < Category > > getAllCategories ( ) {
         return ResponseEntity.ok ( categoryService.getAllCategories ( ) );
     }
-
 
 }
