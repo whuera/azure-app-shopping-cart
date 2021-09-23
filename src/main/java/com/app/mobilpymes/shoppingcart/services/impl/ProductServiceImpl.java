@@ -16,6 +16,7 @@ import java.util.List;
 public
 class ProductServiceImpl implements ProductService {
 
+    public static final int DISCOUNT_VALUE = 2;
     private
     final ProductRepository productRepository;
 
@@ -28,7 +29,7 @@ class ProductServiceImpl implements ProductService {
     @Override
     public
     Product getProduct (Long id) {
-        return productRepository.getById ( id );
+        return productRepository.findById ( id ).orElse ( null );
     }
 
     @Override
@@ -36,7 +37,7 @@ class ProductServiceImpl implements ProductService {
     Product createProduct (Product product) {
         if ( !product.equals ( null ) ) {
             product.setCreateAt ( new Date ( ) );
-            Double priceWithdiscount = product.getDiscount ( ) ? product.getPrice ( ) / 2 : product.getPrice ( );
+            Double priceWithdiscount = product.getDiscount ( ) ? product.getPrice ( ) / DISCOUNT_VALUE : product.getPrice ( );
             product.setPrice ( priceWithdiscount );
             product.setStatus ( ShoppingCartEnum.PRODUCT_CREATE.type );
             return productRepository.save ( product );
