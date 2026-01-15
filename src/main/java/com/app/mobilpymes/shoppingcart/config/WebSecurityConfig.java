@@ -19,8 +19,18 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected
     void configure (HttpSecurity http) throws Exception {
-        http.cors ( ).and ( );
-        //other config
+        http
+                .cors().and()                 // habilitar CORS si usas desde otro origen
+                .csrf().disable()             // deshabilita CSRF para APIs REST (solo si es apropiado)
+                .authorizeRequests()
+                .antMatchers("/api/customer/create").permitAll() // permitir creación pública
+                .antMatchers("/api/customer/**").permitAll() // o ajustar según necesidad
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();                 // o eliminar / cambiar según esquema de auth
+
+        // permitir frames para H2 console si la usas
+        http.headers().frameOptions().sameOrigin();
     }
 
     @Bean
