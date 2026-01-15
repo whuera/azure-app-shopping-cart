@@ -35,12 +35,18 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource ( ) {
-        CorsConfiguration configuration = new CorsConfiguration ( );
-        //configuration.setAllowedOrigins ( Arrays.asList ( "https://azure-app-shopping-cart.azurewebsites.net/" ) );
-        configuration.setAllowedOrigins ( Arrays.asList ( "http://localhost:4200/" ) );
-        configuration.setAllowedMethods ( Arrays.asList ( "GET", "POST" ) );
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource ( );
-        source.registerCorsConfiguration ( "/**", configuration );
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(Arrays.asList(
+                "http://localhost:3000",
+                "https://switch-architecture-hoia.vercel.app/",
+                "https://azure-app-shopping-cart-reload-225fb76523b0.herokuapp.com"
+        ));
+        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type","X-Requested-With"));
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 }
