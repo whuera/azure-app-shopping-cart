@@ -8,12 +8,14 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: User2021
-    url: jdbc:mysql://52.14.105.126/ecommerce
-    username: root
+    #password: User2021
+    #url: jdbc:mysql://52.14.105.126/ecommerce
+    url: jdbc:mysql://blzt7pc28395qlom:wjkxd7qex4e7vtcc@g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jp2ge6cbw10aogap
+    username: blzt7pc28395qlom
+    password: wjkxd7qex4e7vtcc
   jpa:
     hibernate:
       ddl-auto: update
     properties:
-      database-platform: org.hibernate.dialect.MySQL5Dialect
+      database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
