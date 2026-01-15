@@ -1,9 +1,8 @@
 package com.app.mobilpymes.shoppingcart.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +12,6 @@ import javax.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String status;
     private String firstName;
@@ -23,10 +21,15 @@ public class Customer {
     private String phoneNumber;
     private String imageCustomer;
 
+    @Lob
+    @Column(name = "comment", columnDefinition = "TEXT")
+    private String comment;
+
     public Customer() {}
 
     public Customer(Long id, String status, String firstName, String lastName,
-                    String email, String documentId, String phoneNumber, String imageCustomer) {
+                    String email, String documentId, String phoneNumber, String imageCustomer,
+                    String comment) {
         this.id = id;
         this.status = status;
         this.firstName = firstName;
@@ -35,6 +38,7 @@ public class Customer {
         this.documentId = documentId;
         this.phoneNumber = phoneNumber;
         this.imageCustomer = imageCustomer;
+        this.comment = comment;
     }
 
     public Long getId() { return id; }
@@ -61,6 +65,9 @@ public class Customer {
     public String getImageCustomer() { return imageCustomer; }
     public void setImageCustomer(String imageCustomer) { this.imageCustomer = imageCustomer; }
 
+    public String getComment() { return comment; }
+    public void setComment(String comment) { this.comment = comment; }
+
     public static Builder builder() { return new Builder(); }
 
     public static class Builder {
@@ -72,6 +79,7 @@ public class Customer {
         private String documentId;
         private String phoneNumber;
         private String imageCustomer;
+        private String comment;
 
         public Builder id(Long id) { this.id = id; return this; }
         public Builder status(String status) { this.status = status; return this; }
@@ -81,9 +89,10 @@ public class Customer {
         public Builder documentId(String documentId) { this.documentId = documentId; return this; }
         public Builder phoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; return this; }
         public Builder imageCustomer(String imageCustomer) { this.imageCustomer = imageCustomer; return this; }
+        public Builder comment(String comment) { this.comment = comment; return this; }
 
         public Customer build() {
-            return new Customer(id, status, firstName, lastName, email, documentId, phoneNumber, imageCustomer);
+            return new Customer(id, status, firstName, lastName, email, documentId, phoneNumber, imageCustomer, comment);
         }
     }
 }
