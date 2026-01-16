@@ -112,5 +112,4 @@ class ProductController {
     ResponseEntity < List < Category > > getAllCategories ( ) {
         return ResponseEntity.ok ( categoryService.getAllCategories ( ) );
     }
-
 }
