@@ -38,7 +38,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "https://switch-architecture-hoia.vercel.app/",
-                "https://azure-app-shopping-cart-reload-225fb76523b0.herokuapp.com"
+                "https://azure-app-shopping-cart-reload-225fb76523b0.herokuapp.com",
+                "https://mobilpymes.cl",
+                "http://www.mobilpymes.cl"
         ));
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type","X-Requested-With"));
