@@ -39,6 +39,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "http://localhost:3000",
                 "https://switch-architecture-hoia.vercel.app/",
                 "https://azure-app-shopping-cart-reload-225fb76523b0.herokuapp.com",
+                "https://pro-bank-five.vercel.app/",
                 "https://mobilpymes.cl",
                 "http://www.mobilpymes.cl"
         ));
