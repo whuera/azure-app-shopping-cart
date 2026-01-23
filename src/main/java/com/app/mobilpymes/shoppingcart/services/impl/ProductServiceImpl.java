@@ -35,9 +35,11 @@ class ProductServiceImpl implements ProductService {
     @Override
     public
     Product createProduct (Product product) {
-        if ( !product.equals ( null ) ) {
+        if ( product != null ) {
             product.setCreateAt ( new Date ( ) );
-            Double priceWithdiscount = product.getDiscount ( ) ? product.getPrice ( ) / DISCOUNT_VALUE : product.getPrice ( );
+            Double priceWithdiscount = (product.getDiscount() != null && product.getDiscount() > 0)
+                    ? product.getPrice ( ) / DISCOUNT_VALUE
+                    : product.getPrice ( );
             product.setPrice ( priceWithdiscount );
             product.setStatus ( ShoppingCartEnum.PRODUCT_CREATE.type );
             return productRepository.save ( product );

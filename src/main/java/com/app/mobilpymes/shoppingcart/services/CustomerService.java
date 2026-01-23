@@ -21,4 +21,7 @@ interface CustomerService {
     public
     List < Customer > listAllCustomer ( );
 
+    public Customer getLatestCustomer() ;
+
+
 }

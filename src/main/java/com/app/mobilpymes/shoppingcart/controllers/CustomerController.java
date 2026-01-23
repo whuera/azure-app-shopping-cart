@@ -57,4 +57,15 @@ class CustomerController {
         }
         return ResponseEntity.ok ( customerDB );
     }
+    @GetMapping("/latest")
+    public ResponseEntity<Customer> getLatestCustomer() {
+        Customer latestCustomer = customerService.getLatestCustomer();
+
+        if (latestCustomer == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(latestCustomer);
+    }
+
 }
