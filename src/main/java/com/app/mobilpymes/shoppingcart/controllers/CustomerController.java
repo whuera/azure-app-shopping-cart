@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 @CrossOrigin
 public
 class CustomerController {
+    // Logger SLF4J
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private
@@ -79,8 +81,5 @@ class CustomerController {
 
         return ResponseEntity.ok(latestCustomer);
     }
-
-    // Logger SLF4J
-    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 }
