@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Añadidos para logging
 import org.slf4j.Logger;
@@ -64,12 +66,17 @@ class CustomerController {
         return ResponseEntity.ok ( customerDB );
     }
     @GetMapping("/latest")
-    public ResponseEntity<Customer> getLatestCustomer() {
+    public ResponseEntity<Map<String, Object>> getLatestCustomer() {
+        Map<String, Object> result = new HashMap<>();
+
         Customer latestCustomer = customerService.getLatestCustomer();
 
         if (latestCustomer == null) {
             logger.warn("GET /api/customer/latest - no customer found");
-            return ResponseEntity.notFound().build();
+            result.put("message", "No customer found");
+            result.put("success", false);
+            result.put("data", null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
 
         // Log de éxito con información mínima (id y nombre si disponible)
@@ -79,7 +86,10 @@ class CustomerController {
         }
         logger.info("GET /api/customer/latest - success - {}", customerInfo);
 
-        return ResponseEntity.ok(latestCustomer);
+        result.put("message", "Latest customer retrieved successfully");
+        result.put("success", true);
+        result.put("data", latestCustomer);
+        return ResponseEntity.ok(result);
     }
 
 }
