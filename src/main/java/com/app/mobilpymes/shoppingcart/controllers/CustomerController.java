@@ -89,7 +89,8 @@ class CustomerController {
         result.put("message", "Latest customer retrieved successfully");
         result.put("success", true);
         result.put("data", latestCustomer);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 
 }
