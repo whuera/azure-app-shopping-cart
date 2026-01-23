@@ -59,4 +59,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> listAllCustomer() {
         return customerRepository.findAll();
     }
+
+    @Override
+    public Customer getLatestCustomer() {
+        return customerRepository.findTopByOrderByIdDesc();
+    }
 }
