@@ -1,0 +1,47 @@
+<!-- language: html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aplicación online - Documentación</title>
+    <style>
+        :root { --bg:#f4f6f8; --card:#fff; --accent:#2b6cb0; --muted:#666; }
+        html,body { height:100%; margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bg); color:#111; }
+        .container { max-width:1200px; margin:24px auto; padding:20px; }
+        .header { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card); padding:18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+        .title { display:flex; gap:12px; align-items:center; }
+        .logo { width:56px; height:56px; background:linear-gradient(135deg,var(--accent),#6fb1ff); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px; }
+        h1 { margin:0; font-size:20px; color:var(--accent); }
+        p.lead { margin:0; color:var(--muted); font-size:14px; }
+        .actions { display:flex; gap:10px; align-items:center; }
+        .btn { background:var(--accent); color:#fff; padding:10px 14px; border-radius:8px; text-decoration:none; font-weight:600; }
+        .iframe-wrap { margin-top:18px; background:var(--card); border-radius:10px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.06); height:70vh; }
+        iframe { width:100%; height:100%; border:0; display:block; }
+        .note { margin-top:10px; color:var(--muted); font-size:13px; text-align:right; }
+        @media (max-width:720px) {
+          .header { flex-direction:column; align-items:flex-start; gap:12px; }
+          .actions { width:100%; justify-content:space-between; }
+          .iframe-wrap { height:55vh; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="title">
+            <div class="logo">API</div>
+            <div>
+                <h1>Aplicación online</h1>
+                <p class="lead">Servicio activo. Documentación integrada de la API abajo.</p>
+            </div>
+        </div>
+        <div class="actions">
+            <a class="btn" href="https://documenter.getpostman.com/view/27504718/2sBXVhEr8v#19e83bee-28c3-4ef0-bafb-2d795f3b0280" target="_blank" rel="noopener">Abrir documentación</a>
+            <a class="btn" href="/health" style="background:#29a15a">Comprobar health</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
