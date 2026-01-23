@@ -20,11 +20,17 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+// Añadidos para logging
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping(value = "/api/customer")
 @CrossOrigin
 public
 class CustomerController {
+    // Logger SLF4J
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private
@@ -57,4 +63,23 @@ class CustomerController {
         }
         return ResponseEntity.ok ( customerDB );
     }
+    @GetMapping("/latest")
+    public ResponseEntity<Customer> getLatestCustomer() {
+        Customer latestCustomer = customerService.getLatestCustomer();
+
+        if (latestCustomer == null) {
+            logger.warn("GET /api/customer/latest - no customer found");
+            return ResponseEntity.notFound().build();
+        }
+
+        // Log de éxito con información mínima (id y nombre si disponible)
+        String customerInfo = "id=" + latestCustomer.getId();
+        if (latestCustomer.getFirstName() != null) {
+            customerInfo += ", name=" + latestCustomer.getFirstName();
+        }
+        logger.info("GET /api/customer/latest - success - {}", customerInfo);
+
+        return ResponseEntity.ok(latestCustomer);
+    }
+
 }
